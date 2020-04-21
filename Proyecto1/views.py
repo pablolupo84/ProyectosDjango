@@ -1,14 +1,30 @@
 from django.http import HttpResponse
 import datetime
+from django.template import Template,Context
 
-def saludo(request): #Primera Vista
-	documento="""<html>
-	<body>
-	<h1>
-	Hola Alumnos esta es nuestra primera pagina con Django
-	</h1>
-	</body>
-	</html>"""
+class Persona(object):
+	"""docstring for Persona"""
+	def __init__(self, nombre,apellido):
+		self.nombre=nombre
+		self.apellido=apellido
+		
+
+def saludo(request):
+
+	# C:/ProyectosDjango/Proyecto1/Proyecto1/plantillas/plantilla_1.html
+	#nombre="Juan"
+	#apellido="Perez"
+	p1=Persona("Profe Pablo","Lupo")
+	hora_actual=datetime.datetime.now()
+
+	doc_externo=open("C:/ProyectosDjango/Proyecto1/Proyecto1/plantillas/plantilla_1.html")
+
+	plt=Template(doc_externo.read())
+	doc_externo.close()
+	
+	ctx=Context({"nombre_persona":p1.nombre,"apellido_persona":p1.apellido,"momento_actual":hora_actual})
+
+	documento=plt.render(ctx)
 	return HttpResponse(documento)
 
 def despedida(request): #Primera Vista
