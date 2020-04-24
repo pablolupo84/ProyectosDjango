@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Proyecto1.views import saludo,despedida,damefecha,calculaedad
+from Proyecto1.views import saludo,despedida,damefecha,calculaedad,cursoC,cursoPython
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,4 +23,6 @@ urlpatterns = [
     path('nosveremos/',despedida),
     path('fecha/',damefecha),
     path('edadfutura/<int:edad>/<int:agno>',calculaedad),
+    path('cursoC/',cursoC),
+    path('cursoPython/',cursoPython),
 ]

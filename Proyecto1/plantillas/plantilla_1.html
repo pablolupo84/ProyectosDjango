@@ -4,9 +4,39 @@
 	<title>Mi primera App con Django</title>
 </head>
 <body>
-	<h1>Mi primer plantilla con Django</h1>
+	{% include "superior/barra.html" %}
+
+	<h1 style="color: red">Mi primer plantilla con Django</h1>
+
+{# 	Esto es un comentario 1 linea- Ignora esta parte #}
+{% comment %}
+	Esto es un comentario 2 lienas- Ignora esta parte
+	Esto es un comentario 2 lienas- Ignora esta parte
+{% endcomment %}	
+	{% if nombre_persona == 'Profe Pablo' %}
+		<p>El curso lo imparte el profesor titular</p>
+	{% else %}
+		<p>El curso lo imparte el profesor Suplente</p>
+	{% endif %}
+
+
 	<p>El nombre del profesor es: {{nombre_persona}} {{apellido_persona}}</p>
 	<p>La hora actual es: {{momento_actual}} y el dia es: {{momento_actual.day}}</p>
+	<p><strong>Temas del curso</strong></p>
+	<p>
+		<ul>
+			{% if temas %}
+				{% for item in temas  %}
+					{# <li>{{item|first}}</li> filtro first#} 
+					 <li>{{item|first|lower}}</li>
+				{% endfor %}
+			{% else %}
+				<p>No hay elementos para mostar</p>
+			{% endif %}
+		</ul>
+	</p>
+
+	<p>{{temas.1}}</p>
 </body>
 </html>
 	
